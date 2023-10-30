@@ -1,19 +1,11 @@
-# LABORATORIO 7 - MVC + Bootstrap CSS
+# LABORATORIO 8- Graficos
 
 ## INTEGRANTES
 - Andrea Valentina Torres Tobar
 - Carolina Medina Acero 
 
-## Implementación del CRUD
-- READ
-![](/src/main/resources/img/Read.png)
-![](/src/main/resources/img/ReadconDbeaver.png)
-- CREATE
-![](/src/main/resources/img/Create.png)
-- UPDATE
-![](/src/main/resources/img/Update1.png)
-![](/src/main/resources/img/update2.png)
-- DELETE
-![](/src/main/resources/img/delete1.png)
-![](/src/main/resources/img/delete2.png)
+## Implementación De Graficas
+- Histograma De Salarios
+![](/src/main/resources/img/histograma.png)
+
 
