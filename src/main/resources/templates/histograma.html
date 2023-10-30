@@ -29,12 +29,22 @@
         };
 
         var options = {
-            scales: {
-                y: {
-                    beginAtZero: true
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Salarios' // Etiqueta para el eje X (horizontal)
+                }
+            },
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Número de Empleados' // Etiqueta para el eje Y (vertical)
                 }
             }
-        };
+        }
+    };
 
         var ctx = document.getElementById('histograma').getContext('2d');
         var myChart = new Chart(ctx, {
