@@ -7,12 +7,12 @@
 <body>
     <canvas id="histograma"></canvas>
     <script th:inline="javascript">
-        var marcasDeClase = /*[[${marcasDeClase}]]*/;
+        var marcasDeClase = /*[[${marcasDeClase}]]*/{};
         var marcasDeClaseConPesos = marcasDeClase.map(function(marca) {
             return '$' + marca;
         });
 
-        var frecuenciaAbsoluta = /*[[${frecuenciaAbsoluta}]]*/;
+        var frecuenciaAbsoluta = /*[[${frecuenciaAbsoluta}]]*/{};
 
         var data = {
             labels: marcasDeClaseConPesos, // Usamos el nuevo arreglo con el signo de pesos
