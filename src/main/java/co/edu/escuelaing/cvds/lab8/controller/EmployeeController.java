@@ -5,7 +5,9 @@ import co.edu.escuelaing.cvds.lab8.service.EmployeeService;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -96,7 +98,7 @@ public class EmployeeController {
         double limiteInferior= salarioMinimo;
         double limiteSuperior= 0;
      
-        
+
         for (int i = 0; i < numeroDeClases; i++) {
              
              limiteSuperior=limiteInferior+anchoDeClase;
@@ -120,5 +122,24 @@ public class EmployeeController {
         model.addAttribute("frecuenciaAbsoluta", frecuenciaAbsoluta);
         return "histograma";
     }
+
+
+    @GetMapping("/grafico")
+    public String mostrarGrafico(Model model) {
+        List<Employee> empleados = employeeService.getAllEmployees();
+        
+        Map<String, Integer> empresaEmpleadoCount = new HashMap<>();
+
+        // Itera sobre la lista de empleados y cuenta el número de empleados por empresa
+        for (Employee empleado : empleados) {
+            String empresa = empleado.getCompany();
+            empresaEmpleadoCount.put(empresa, empresaEmpleadoCount.getOrDefault(empresa, 0) + 1);
+        }
+
+        model.addAttribute("empresaEmpleadoCount", empresaEmpleadoCount);
+
+        return "grafico"; // Nombre de la vista Thymeleaf
+    }
+
 
 }
