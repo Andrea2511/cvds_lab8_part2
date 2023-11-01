@@ -70,7 +70,7 @@ public class EmployeeController {
         return "redirect:/empleados/lista";
     }
 
-    @GetMapping("/histograma")
+    @GetMapping("/histogramaSalarios")
 
     public String mostrarHistogramaSalarios(Model model) {
         List<Employee> empleados = employeeService.getAllEmployees();
@@ -120,11 +120,11 @@ public class EmployeeController {
         //Como lo vamos a llamar en el html 
         model.addAttribute("marcasDeClase", Marcasdeclase);
         model.addAttribute("frecuenciaAbsoluta", frecuenciaAbsoluta);
-        return "histograma";
+        return "histogramaSalarios";
     }
 
 
-    @GetMapping("/grafico")
+    @GetMapping("/PieEmpleados")
     public String mostrarGrafico(Model model) {
         List<Employee> empleados = employeeService.getAllEmployees();
         
@@ -138,8 +138,12 @@ public class EmployeeController {
 
         model.addAttribute("empresaEmpleadoCount", empresaEmpleadoCount);
 
-        return "grafico"; // Nombre de la vista Thymeleaf
+        return "PieEmpleados"; // Nombre de la vista Thymeleaf
     }
 
+    @GetMapping("menu")
+    public String menu() {
+        return "Menu";
+    }
 
 }

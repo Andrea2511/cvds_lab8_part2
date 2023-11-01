@@ -6,6 +6,9 @@
 
 ## Implementación De Gráficos
 - Histograma De Salarios
-![](/src/main/resources/img/histograma.png)
+![](src/main/resources/img/histogramasalario.png)
+
+- Número de empleados por empresa
+![](src/main/resources/img/Pieempleadosporempresa.png)
 
 
