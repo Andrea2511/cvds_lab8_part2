@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Salario Promedio Por Empresa</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+</head>
+<body>
+    <h1>Salario promedio por empresa</h1>
+
+    <canvas id = "salarioPromedio"></canvas>
+
+    <script th:inline="javascript">
+        var ctx = document.getElementById("salarioPromedio").getContext("2d");
+        var salary = /*[[${salary}]]*/ {};
+
+        var myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["Ecopetrol", "DIAN", "Avianca"],
+                datasets: [{
+                    label: "Salario promedio",
+                    data: [salary.get("Ecopetrol"), salary.get("DIAN"), salary.get("Avianca")],
+                    backgroundColor: ["#60b04f", "#4c45d3", "#cb1a2f"]
+                }]
+            },
+            options: {
+                title: {
+                    text: "Salario promedio por empresa",
+                    fontSize: 24
+                },
+                legend: {
+                    position: "bottom"
+                },
+                xAxis: {
+                    title: {
+                        text: "Empresa"
+                    },
+                    labels: {
+                        fontSize: 12
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: "Salario promedio",
+                        y: 20
+                    },
+                    labels: {
+                        fontSize: 12
+                    },
+                    tickFormatter: function(value) {
+                        return "$" + value.toFixed(2);
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                    callbacks: {
+                        title: function(tooltipItem, data) {
+                            return data.datasets[tooltipItem.datasetIndex].label;
+                        },
+                        label: function(tooltipItem, data) {
+                            return tooltipItem.yLabel + " pesos";
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

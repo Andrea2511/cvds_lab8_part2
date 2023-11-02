@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gráfico de Líneas con Chart.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Gastos por salario de las empresas</h1>
+  <div style="width: 400px; height: 200px;">
+    <canvas id="lineChart"></canvas>
+  </div>
+
+    <script>
+
+      var ctx = document.getElementById('lineChart').getContext('2d');
+      var salary = /*[[${salary}]]*/ {};
+      var empresas = Object.keys(salary);
+      var gastosValores = Object.values(salary);
+
+      var data = {
+        labels: [empresas],
+        datasets: [{
+          label: 'Gastos',
+          data: [gastosValores],
+          borderColor: 'blue',
+          borderWidth: 2,
+          fill: false
+        }]
+      };
+
+      var options = {
+        responsive: true
+      };
+
+
+      var chart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+      });
+    </script>
+</body>
+</html>
