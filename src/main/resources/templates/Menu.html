@@ -14,9 +14,9 @@
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-primary" onclick="cargarHistograma()">Histograma de Salario</button>
             <button type="button" class="btn btn-primary" onclick="cargarPie()">Número de empleados por empresa</button>
-            <button type="button" class="btn btn-primary">Salario promedio por empresa</button>
-            <button type="button" class="btn btn-primary">Gastos en salario de las empresas registradas en el sistema</button>
-            <button type="button" class="btn btn-primary">Personas por sexo en la base de datos</button>
+            <button type="button" class="btn btn-primary" onclick="cargarSalarioPromedio()">Salario promedio por empresa</button>
+            <button type="button" class="btn btn-primary" onclick="cargarGastosSalarios()">Gastos en salario de las empresas registradas en el sistema</button>
+            <button type="button" class="btn btn-primary" onclick="cargarSexoPersona()">Personas por sexo en la base de datos</button>
         </div>
         <!-- Agrega un iframe para mostrar el contenido de histograma.html -->
         <iframe id="grafica-frame" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
@@ -32,6 +32,22 @@
             var iframe = document.getElementById('grafica-frame');
             iframe.src = '/empleados/PieEmpleados';
         }
+
+        function cargarSalarioPromedio() {
+            var iframe = document.getElementById('grafica-frame');
+            iframe.src = 'salarioPromedio';
+        }
+
+        function cargarGastosSalarios() {
+            var iframe = document.getElementById('grafica-frame');
+            iframe.src = 'gastosSalarios';
+        }
+
+        function cargarSexoPersona() {
+            var iframe = document.getElementById('grafica-frame');
+            iframe.src = 'sexoPersona';
+        }
+
     </script>
 </body>
 </html>

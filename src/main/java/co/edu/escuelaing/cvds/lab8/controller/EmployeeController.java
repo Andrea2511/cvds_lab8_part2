@@ -81,6 +81,7 @@ public class EmployeeController {
             double salario = empleado.getSalary();
             salarios.add(salario);
         }
+
         // ordenar lista 
         Collections.sort(salarios);
 
@@ -101,8 +102,8 @@ public class EmployeeController {
 
         for (int i = 0; i < numeroDeClases; i++) {
              
-             limiteSuperior=limiteInferior+anchoDeClase;
-             double marcadeclase= (limiteInferior+limiteSuperior)/2;
+             limiteSuperior = limiteInferior + anchoDeClase;
+             double marcadeclase = (limiteInferior + limiteSuperior)/2;
              Marcasdeclase.add(marcadeclase);
              int frecuencia = 0;
              for (double salario : salarios) {
@@ -126,6 +127,7 @@ public class EmployeeController {
 
     @GetMapping("/PieEmpleados")
     public String mostrarGrafico(Model model) {
+
         List<Employee> empleados = employeeService.getAllEmployees();
         
         Map<String, Integer> empresaEmpleadoCount = new HashMap<>();
@@ -139,6 +141,75 @@ public class EmployeeController {
         model.addAttribute("empresaEmpleadoCount", empresaEmpleadoCount);
 
         return "PieEmpleados"; // Nombre de la vista Thymeleaf
+    }
+
+    @GetMapping("/salarioPromedio")
+    public String mostrarGraficoSalarioPromedio(Model model) {
+
+        List<Employee> empleados = employeeService.getAllEmployees();
+        Map<String, Integer> count = new HashMap<>();
+        Map<String, Double> salary = new HashMap<>();
+
+        for (Employee empleado : empleados) {
+            String empresa = empleado.getCompany();
+            double salario = empleado.getSalary();
+
+            count.put(empresa, count.getOrDefault(empresa, 0) + 1);
+            salary.put(empresa, salary.getOrDefault(empresa, 0.0) + salario);
+        }
+
+        salary.put("Ecopetrol", salary.get("Ecopetrol") / count.get("Ecopetrol"));
+        salary.put("DIAN", salary.get("DIAN") / count.get("DIAN"));
+        salary.put("Avianca", salary.get("Avianca") / count.get("Avianca"));
+
+
+        model.addAttribute("salary", salary);
+
+        return "salarioPromedio";
+
+    }
+
+    @GetMapping("/gastosSalarios")
+    public String mostrarGraficoGastosSalarios(Model model) {
+
+        List<Employee> empleados = employeeService.getAllEmployees();
+        Map<String, Double> salary = new HashMap<>();
+
+        for (Employee empleado : empleados) {
+            String empresa = empleado.getCompany();
+            double salario = empleado.getSalary();
+
+            salary.put(empresa, salary.getOrDefault(empresa, 0.0) + salario);
+        }
+
+        System.out.println("Contenido del mapa salary:");
+        for (Map.Entry<String, Double> entry : salary.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        model.addAttribute("salary", salary);
+
+        return "gastosSalarios";
+
+    }
+
+    @GetMapping("/sexoPersona")
+    public String mostrarGraficoSexoPersona(Model model) {
+
+        List<Employee> empleados = employeeService.getAllEmployees();
+        Map<String, Integer> countS = new HashMap<>();
+
+        for (Employee empleado : empleados) {
+
+            String sexo = empleado.getSex();
+            countS.put(sexo, countS.getOrDefault(sexo, 0) + 1);
+
+        }
+
+        model.addAttribute("countS", countS);
+
+        return "sexoPersona";
+
     }
 
     @GetMapping("menu")
